@@ -8,10 +8,14 @@ public class EventData : MonoBehaviour
     [SerializeField]
     public List<ScriptRow> script = new List<ScriptRow>();
 
+    void Awake()
+    {
+        ReadCsv("eventScript");
+    }
 
     void Start()
     {
-        ReadCsv("eventScript");
+        
     }
 
     void Update()
@@ -31,7 +35,7 @@ public class EventData : MonoBehaviour
 
 
     // CSVを１行ずつ分解してScriptRowに格納していく
-    public ScriptRow ParseCsv(string text, string name)
+    private ScriptRow ParseCsv(string text, string name)
     {
         ScriptRow sr = new ScriptRow(name);
         

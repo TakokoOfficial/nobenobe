@@ -1,20 +1,19 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-public class MessageLoader : MonoBehaviour
+public class MessageLoader : MonoBehaviour, ICommandExecutor
 {
-
-    void Start()
+    // コマンドの文言を定義
+    // SayはMessageLoaderが担当する
+    public bool CanExecute(string command)
     {
-        
+        return command == "Say";
     }
 
-    void Update()
+    public IEnumerator Execute(CsvRow row)
     {
-        
-    }
-
-    void run()
-    {
-        // 処理
+        Debug.Log("" + row.args[0]);
+        yield return new WaitForSeconds(1);
     }
 }
