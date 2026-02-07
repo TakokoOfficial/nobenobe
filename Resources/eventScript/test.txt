@@ -1,0 +1,4 @@
+Say,セリフを表示
+BackGround, black
+Wait, 1000
+BGM, <fadeout>opening
