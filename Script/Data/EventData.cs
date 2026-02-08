@@ -28,7 +28,6 @@ public class EventData : MonoBehaviour
         TextAsset[] csvFiles = Resources.LoadAll<TextAsset>(fileName);
         foreach(TextAsset csv in csvFiles)
         {
-            Debug.Log("" + csv.name);
             script.Add(ParseCsv(csv.text, csv.name));
         }
     }

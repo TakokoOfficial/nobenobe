@@ -17,7 +17,7 @@ public class StackMachine : MonoBehaviour
 
     void Start()
     {
-        RunScript("test2");
+        RunScript("test3");
     }
 
     void Update()
@@ -33,6 +33,7 @@ public class StackMachine : MonoBehaviour
         StartCoroutine(Run(script));
     }
 
+    // スクリプトを指定して実行を開始する
     IEnumerator Run(ScriptRow script)
     {
         Debug.Log("Run");
@@ -42,6 +43,7 @@ public class StackMachine : MonoBehaviour
         }
     }
 
+    // スクリプトを１行ずつ実行していく
     IEnumerator ExecuteRow(CsvRow row)
     {
         Debug.Log("" + row.command + " が実行されました");
