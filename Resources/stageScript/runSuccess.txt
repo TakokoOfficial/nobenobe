@@ -1,0 +1,3 @@
+Animation,heroRunningDisappear
+Game,health,-1
+Game,stageStart

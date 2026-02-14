@@ -1,0 +1,14 @@
+Animation,letsSleep
+Stop,1000
+Animation,buttonsNone
+Animation,heroDisappear
+
+Stop,500
+Animation,heroSleeping
+Stop,1000
+Animation,backGroundBlackout
+
+Animation,appearAll
+Stay,all
+Animation,disappearAll
+Game,sleeping

@@ -17,6 +17,7 @@ public class AnimationLoader : MonoBehaviour, ICommandExecutor
     {
         // スクリプトの引数と同じ名前のアニメーションを再生
         Animation matchedAnimation = animations.FirstOrDefault(a => a.name == row.args[0]);
+        Debug.Log("" + matchedAnimation.name);
         matchedAnimation.animator.Play(matchedAnimation.stateName);
 
         yield break;

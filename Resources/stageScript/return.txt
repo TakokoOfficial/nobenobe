@@ -1,0 +1,4 @@
+Animation,letsReturn
+Stop,1000
+Animation,buttonsNone
+Animation,heroDisappear

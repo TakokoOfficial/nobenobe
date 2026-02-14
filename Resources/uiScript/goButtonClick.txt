@@ -1,0 +1,5 @@
+Animation,goButtonNone
+Animation,goButtonNone2
+Stay,goButton
+Animation,goButtonClick
+Game,run

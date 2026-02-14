@@ -22,4 +22,47 @@ public class ScriptRow{
     {
         csvList.Add(cr);
     }
+
+    // ScriptRowに格納されたCsvRow群の中から、args[i]とnameに一致するCsvRowのリストを返す
+    public List<CsvRow> GetCsvRows(int i, string name)
+    {
+        List<CsvRow> result = new List<CsvRow>();
+
+        foreach (var row in csvList)
+        {
+            // args が存在し、i番目があるかチェック
+            if (row.args != null && row.args.Count > i)
+            {
+                if (row.args[i] == name)
+                {
+                    result.Add(row);
+                }
+            }
+        }
+        return result;
+    }
+
+    // ScriptRowに格納されたCsvRow群の中から、args[i]とnameに一致するCsvRowのリストを返す
+    public List<CsvRow> GetCsvRows(int i, int num)
+    {
+        List<CsvRow> result = new List<CsvRow>();
+
+        foreach (var row in csvList)
+        {
+            if (row.args != null && row.args.Count > i)
+            {
+                int value;
+
+                // 数値に変換できるかチェック
+                if (int.TryParse(row.args[i], out value))
+                    {
+                    if (value == num)
+                    {
+                        result.Add(row);
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }

@@ -1,0 +1,4 @@
+Animation,heroSleepingNone
+Animation,backGroundBlackoutClear
+Game,health,999999
+Game,stageStart

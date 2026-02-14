@@ -11,6 +11,9 @@ public class EventData : MonoBehaviour
     void Awake()
     {
         ReadCsv("eventScript");
+        ReadCsv("stageScript");
+        ReadCsv("uiScript");
+
     }
 
     void Start()
@@ -67,5 +70,21 @@ public class EventData : MonoBehaviour
         }
 
         return new CsvRow(command, argsList);
+    }
+
+
+    // 引数とScriptRowのnameと一致するScriptRowを返す
+    public ScriptRow GetScriptRow(string name)
+    {
+    foreach (ScriptRow sr in script)
+        {
+            if (sr.name == name)
+            {
+                return sr;
+            }
+        }
+
+        Debug.LogWarning($"ScriptRow not found: {name}");
+        return null;
     }
 }

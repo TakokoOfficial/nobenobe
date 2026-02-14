@@ -9,34 +9,46 @@ public class InputGetter : MonoBehaviour
     [SerializeField]
      ClickGameObject[] clickGameObjects;
 
-    void Update()
+void Update()
+{
+    if (EventSystem.current == null) return;
+
+    PointerEventData pointerData = new PointerEventData(EventSystem.current)
     {
-        if (Input.GetMouseButtonDown(0))
+        position = Input.mousePosition
+    };
+
+    var results = new List<RaycastResult>();
+    EventSystem.current.RaycastAll(pointerData, results);
+
+    if (results.Count > 0)
+    {
+        var top = results[0].gameObject;
+
+        foreach (var cgo in clickGameObjects)
         {
-            if (EventSystem.current == null) return;
-
-            PointerEventData pointerData = new PointerEventData(EventSystem.current)
+            if (cgo.gameObject == top)
             {
-                position = Input.mousePosition
-            };
+                cgo.NotifyHovered();
+            }
+        }
+    }
 
-            var results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(pointerData, results);
-
-            foreach (var result in results)
+    if (Input.GetMouseButtonDown(0))
+    {
+        foreach (var result in results)
+        {
+            foreach (var cgo in clickGameObjects)
             {
-                foreach (var cgo in clickGameObjects)
+                if (cgo.gameObject == result.gameObject)
                 {
-                    if (cgo.gameObject == result.gameObject)
-                    {
-                        cgo.NotifyClicked();
-                        return;
-                    }
+                    cgo.NotifyClicked();
+                    return;
                 }
             }
         }
-        
     }
+}
 
     public ClickGameObject GetClickObjectByName(string name)
     {
@@ -49,27 +61,33 @@ public class InputGetter : MonoBehaviour
     }
 
 
-    public IEnumerator WaitForClick(string name)
+public IEnumerator WaitForInteraction(string name, string mode)
+{
+    ClickGameObject target = GetClickObjectByName(name);
+
+    if (target == null)
     {
-        ClickGameObject target = GetClickObjectByName(name);
-
-        if (target == null)
-        {
-            Debug.LogError($"ClickGameObject '{name}' が見つかりません");
-            yield break;
-        }
-
-        bool clicked = false;
-
-        void OnClick(GameObject go)
-        {
-            clicked = true;
-        }
-
-        target.OnClicked += OnClick;
-
-        yield return new WaitUntil(() => clicked);
-
-        target.OnClicked -= OnClick;
+        Debug.LogError($"ClickGameObject '{name}' が見つかりません");
+        yield break;
     }
+
+    bool done = false;
+
+    void OnClick(GameObject go) => done = true;
+    void OnHover(GameObject go) => done = true;
+
+    if (mode == "on")
+    {
+        target.OnHovered += OnHover;
+    }
+    else
+    {
+        target.OnClicked += OnClick;
+    }
+
+    yield return new WaitUntil(() => done);
+
+    target.OnHovered -= OnHover;
+    target.OnClicked -= OnClick;
+}
 }

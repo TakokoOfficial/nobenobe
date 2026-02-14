@@ -97,3 +97,9 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+Font/DotGothic16-Regular SDF.asset
+Font/DotGothic16-Regular SDF.asset.meta
+Font/PixelMplus10-Regular SDF.asset
+Font/PixelMplus10-Regular SDF.asset.meta
+Font/PixelMplus10-Regular.ttf
+Font/PixelMplus10-Regular.ttf.meta

@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class WaitForClickCommand : MonoBehaviour, ICommandExecutor
 {
@@ -12,11 +14,11 @@ public class WaitForClickCommand : MonoBehaviour, ICommandExecutor
 
     public IEnumerator Execute(CsvRow row)
     {
-        // 2つ目の引数を取得
         string targetName = row.args[0];
+        string mode = row.args.Count > 1 ? row.args[1] : "";
 
-        Debug.Log($"Stay: {targetName} のクリック待ち");
+        Debug.Log($"Stay: {targetName} / mode={mode}");
 
-        yield return inputGetter.WaitForClick(targetName);
+        yield return inputGetter.WaitForInteraction(targetName, mode);
     }
 }

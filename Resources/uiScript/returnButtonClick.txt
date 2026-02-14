@@ -1,0 +1,5 @@
+Animation,returnButtonNone
+Animation,returnButtonNone2
+Stay,returnButton
+Animation,returnButtonClick
+Game,return

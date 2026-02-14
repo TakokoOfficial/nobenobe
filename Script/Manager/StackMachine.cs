@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class StackMachine : MonoBehaviour
 {
@@ -12,12 +13,14 @@ public class StackMachine : MonoBehaviour
 
     void Awake()
     {
-        executors.AddRange(GetComponents<ICommandExecutor>());
+        executors = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None)
+            .OfType<ICommandExecutor>()
+            .ToList();
     }
 
     void Start()
     {
-        RunScript("test3");
+
     }
 
     void Update()
@@ -26,9 +29,9 @@ public class StackMachine : MonoBehaviour
     }
 
     // スクリプトを呼び出して実行する
-    void RunScript(string scriptName)
+    public void RunScript(string scriptName)
     {
-        Debug.Log("RunScript");
+        Debug.Log("RunScript = " + scriptName);
         ScriptRow script = eventData.script.Find(s => s.name == scriptName);
         StartCoroutine(Run(script));
     }
@@ -36,7 +39,7 @@ public class StackMachine : MonoBehaviour
     // スクリプトを指定して実行を開始する
     IEnumerator Run(ScriptRow script)
     {
-        Debug.Log("Run");
+        Debug.Log("Run = " + script.name);
         foreach (var row in script.csvList)
         {
             yield return ExecuteRow(row);
@@ -57,5 +60,16 @@ public class StackMachine : MonoBehaviour
         }
     }
 
-
+    public void StopAllRunningCoroutines()
+    {
+        Debug.Log("StackMachine: すべてのコルーチンを停止");
+        StopAllCoroutines();
+        foreach (var exec in executors)
+        {
+            if (exec is MonoBehaviour mb)
+            {
+                mb.StopAllCoroutines();
+            }
+        }
+    }
 }
