@@ -1,4 +1,8 @@
-Animation,heroSleepingNone
 Animation,backGroundBlackoutClear
+Stop,750
 Game,health,999999
+Stop,500
+Animation,blackoutRight
+Stop,500
+Animation,heroSleepingNone
 Game,stageStart

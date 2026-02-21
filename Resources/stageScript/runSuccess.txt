@@ -1,3 +1,5 @@
 Animation,heroRunningDisappear
-Game,health,-1
+Stop,500
+Animation,blackoutRight
+Stop,500
 Game,stageStart

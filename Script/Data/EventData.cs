@@ -13,6 +13,7 @@ public class EventData : MonoBehaviour
         ReadCsv("eventScript");
         ReadCsv("stageScript");
         ReadCsv("uiScript");
+        ReadCsv("itemScript");
 
     }
 

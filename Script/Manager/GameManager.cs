@@ -231,7 +231,6 @@ public class GameManager : MonoBehaviour
     {
         stackMachine.RunScript("return");
         ChangeHealth(-1);
-        StageStart();
     }
 
     // 移動中、主人公をクリックした際に呼び出される
@@ -261,7 +260,6 @@ public class GameManager : MonoBehaviour
     // 就寝中、主人公をクリックした際に呼び出される
     public void Sleeping()
     {
-        Debug.Log(" ほげ");
         // アクシデントが起こったり起こらなかったりする
         // アクシデントの発生確率を計算する
         int randomI = Random.Range(0, 100);
@@ -338,7 +336,6 @@ public class GameManager : MonoBehaviour
             for (int i = prevIndex; i <= index; i++)
             {   
                 string animName = $"health{i}";
-                Debug.Log(animName);
                 healthAnim.Play(animName);
             }
         }
@@ -346,7 +343,6 @@ public class GameManager : MonoBehaviour
         {
             // 減少時：現在の段階のみ再生
             string animName = $"health{index} 1";
-            Debug.Log(animName);
             healthAnim.Play(animName);
         }
     }

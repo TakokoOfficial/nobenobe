@@ -1,4 +1,5 @@
 Say,
+Animation,blackoutRightClear
 
 Animation,placeNone
 Animation,buttonsNone
@@ -7,11 +8,11 @@ Animation,eventPercentageNone
 Animation,heroNone
 
 Animation,placeNameShow
-Stop,500
+Stop,300
 Animation,deathPercentageAppear
 Stop,150
 Animation,eventPercentageAppear
-Stop,400
+Stop,250
 Animation,deathPercentageStay
 Animation,heroAppear
 Stop,300

@@ -1,4 +1,7 @@
+Stop,500
+Animation,blackoutRight
+Stop,500
 Animation,letsReturn
-Stop,1000
 Animation,buttonsNone
 Animation,heroDisappear
+Game,stageStart
